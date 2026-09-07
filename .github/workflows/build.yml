@@ -5,6 +5,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,9 +37,29 @@ jobs:
           echo "=== MANIFEST ==="
           unzip -p Fojik/build/Fojik.cs3 manifest.json
           echo
-          echo "=== DEX CLASSES ==="
-          unzip -p Fojik/build/Fojik.cs3 classes.dex > /tmp/classes.dex
-          strings /tmp/classes.dex | grep -E "FojikPlugin|FojikProvider|com/fojik/cloudstream" | head -50
+          echo "=== CS3 FILE ==="
+          file Fojik/build/Fojik.cs3
+
+      - name: Prepare builds branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin builds || true
+
+          if git show-ref --verify --quiet refs/remotes/origin/builds; then
+            git checkout -B builds origin/builds
+          else
+            git checkout --orphan builds
+            git rm -rf . || true
+          fi
+
+          cp "$GITHUB_WORKSPACE/Fojik/build/Fojik.cs3" ./Fojik.cs3
+          cp "$GITHUB_WORKSPACE/plugins.json" ./plugins.json
+
+          git add Fojik.cs3 plugins.json
+          git commit -m "Update Fojik plugin" || true
+          git push origin builds
 
       - name: Upload build files
         uses: actions/upload-artifact@v4
