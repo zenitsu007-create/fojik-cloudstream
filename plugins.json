@@ -1,20 +1,19 @@
-{
-  "plugins": [
-    {
-      "name": "Fojik",
-      "internalName": "Fojik",
-      "url": "https://raw.githubusercontent.com/zenitsu007-create/fojik-cloudstream/builds/Fojik.cs3",
-      "status": 1,
-      "version": 1,
-      "description": "Fojik movie metadata provider",
-      "authors": [
-        "FojikCloudStream"
-      ],
-      "language": "en",
-      "tvTypes": [
-        "Movie"
-      ],
-      "iconUrl": "https://fojik.site/wp-content/uploads/new-mlw-bd-red.jpg"
-    }
-  ]
-}
+[
+  {
+    "name": "Fojik",
+    "internalName": "Fojik",
+    "url": "https://raw.githubusercontent.com/zenitsu007-create/fojik-cloudstream/builds/Fojik.cs3",
+    "status": 1,
+    "version": 1,
+    "apiVersion": 1,
+    "description": "Fojik movie metadata provider",
+    "authors": [
+      "FojikCloudStream"
+    ],
+    "language": "en",
+    "tvTypes": [
+      "Movie"
+    ],
+    "iconUrl": "https://fojik.site/wp-content/uploads/new-mlw-bd-red.jpg"
+  }
+]
