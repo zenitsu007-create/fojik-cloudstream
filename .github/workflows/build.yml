@@ -29,6 +29,13 @@ jobs:
       - name: Build
         run: gradle Fojik:make
 
+      - name: Inspect CS3
+        run: |
+          echo "=== CS3 FILE ==="
+          file Fojik/build/*.cs3
+          echo "=== CS3 CONTENTS ==="
+          unzip -l Fojik/build/*.cs3
+
       - name: Upload build files
         uses: actions/upload-artifact@v4
         with:
