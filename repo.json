@@ -1,0 +1,8 @@
+{
+  "name": "Fojik CloudStream Repository",
+  "description": "Fojik CloudStream extensions",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/zenitsu007-create/FojikCloudStream/builds/plugins.json"
+  ]
+}
