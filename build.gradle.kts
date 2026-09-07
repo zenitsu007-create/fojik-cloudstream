@@ -39,4 +39,35 @@ subprojects {
     cloudstream {
         setRepo(
             System.getenv("GITHUB_REPOSITORY")
-                ?: "https://github.com/user/repo
+                ?: "https://github.com/user/repo"
+        )
+    }
+
+    android {
+        namespace = "com.fojik.cloudstream"
+
+        defaultConfig {
+            minSdk = 21
+            compileSdkVersion(35)
+            targetSdk = 35
+        }
+
+        compileOptions {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+        }
+
+        tasks.withType<KotlinJvmCompile> {
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_1_8)
+            }
+        }
+    }
+
+    dependencies {
+        val implementation by configurations
+
+        implementation("com.github.recloudstream.cloudstream:library:-SNAPSHOT")
+        implementation("org.jsoup:jsoup:1.18.3")
+    }
+}
