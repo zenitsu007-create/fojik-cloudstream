@@ -28,3 +28,10 @@ jobs:
 
       - name: Build
         run: gradle Fojik:make
+
+      - name: Upload plugin
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fojik-plugin
+          path: Fojik/build/*.cs3
+          if-no-files-found: error
