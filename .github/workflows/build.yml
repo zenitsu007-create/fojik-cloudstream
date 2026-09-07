@@ -34,8 +34,9 @@ jobs:
           echo "=== MANIFEST ==="
           unzip -p Fojik/build/Fojik.cs3 manifest.json
           echo
-          echo "=== CS3 FILE ==="
-          file Fojik/build/Fojik.cs3
+          echo "=== DEX CLASSES ==="
+          unzip -p Fojik/build/Fojik.cs3 classes.dex > /tmp/classes.dex
+          strings /tmp/classes.dex | grep -E "FojikPlugin|FojikProvider|com/fojik/cloudstream" | head -50
 
       - name: Upload build files
         uses: actions/upload-artifact@v4
