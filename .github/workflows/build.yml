@@ -31,10 +31,11 @@ jobs:
 
       - name: Inspect CS3
         run: |
+          echo "=== MANIFEST ==="
+          unzip -p Fojik/build/Fojik.cs3 manifest.json
+          echo
           echo "=== CS3 FILE ==="
-          file Fojik/build/*.cs3
-          echo "=== CS3 CONTENTS ==="
-          unzip -l Fojik/build/*.cs3
+          file Fojik/build/Fojik.cs3
 
       - name: Upload build files
         uses: actions/upload-artifact@v4
