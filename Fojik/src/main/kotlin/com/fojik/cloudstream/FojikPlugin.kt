@@ -1,11 +1,12 @@
 package com.fojik.cloudstream
 
+import android.content.Context
 import com.lagradost.cloudstream3.plugins.CloudstreamPlugin
 import com.lagradost.cloudstream3.plugins.Plugin
 
 @CloudstreamPlugin
 class FojikPlugin : Plugin() {
-    override fun load(context: android.content.Context) {
+    override fun load(context: Context) {
         registerMainAPI(FojikProvider())
     }
-} 
+}
