@@ -32,13 +32,10 @@ jobs:
       - name: Build
         run: gradle Fojik:make
 
-      - name: Inspect CS3
+      - name: Save build files
         run: |
-          echo "=== MANIFEST ==="
-          unzip -p Fojik/build/Fojik.cs3 manifest.json
-          echo
-          echo "=== CS3 FILE ==="
-          file Fojik/build/Fojik.cs3
+          cp Fojik/build/Fojik.cs3 /tmp/Fojik.cs3
+          cp plugins.json /tmp/plugins.json
 
       - name: Prepare builds branch
         run: |
@@ -54,16 +51,9 @@ jobs:
             git rm -rf . || true
           fi
 
-          cp "$GITHUB_WORKSPACE/Fojik/build/Fojik.cs3" ./Fojik.cs3
-          cp "$GITHUB_WORKSPACE/plugins.json" ./plugins.json
+          cp /tmp/Fojik.cs3 ./Fojik.cs3
+          cp /tmp/plugins.json ./plugins.json
 
           git add Fojik.cs3 plugins.json
           git commit -m "Update Fojik plugin" || true
           git push origin builds
-
-      - name: Upload build files
-        uses: actions/upload-artifact@v4
-        with:
-          name: Fojik-build
-          path: Fojik/build/
-          if-no-files-found: error
